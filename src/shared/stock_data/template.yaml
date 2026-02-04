@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Stock Data Lambda Tool for Financial Research Agent
+  
+  This SAM template deploys a Lambda function that provides stock data
+  lookup and portfolio optimization capabilities for Amazon Bedrock Agents.
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 512
+    Runtime: python3.11
+
+Resources:
+  # Lambda layer with required dependencies
+  StockDataDependenciesLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: stock-data-dependencies
+      Description: Dependencies for stock data Lambda (yfinance, numpy, scipy)
+      ContentUri: dependencies/
+      CompatibleRuntimes:
+        - python3.11
+      RetentionPolicy: Delete
+    Metadata:
+      BuildMethod: python3.11
+
+  # The main Lambda function for stock data operations
+  StockDataFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: stock_data_tools
+      Description: Provides stock data lookup and portfolio optimization for financial research
+      Handler: lambda_function.lambda_handler
+      CodeUri: .
+      Layers:
+        - !Ref StockDataDependenciesLayer
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Tags:
+        Project: financial-research-agent
+        Component: stock-data-tool
+
+  # Permission for Bedrock to invoke this Lambda
+  BedrockInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref StockDataFunction
+      Action: lambda:InvokeFunction
+      Principal: bedrock.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+
+  # CloudWatch Log Group with retention policy
+  StockDataLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${StockDataFunction}"
+      RetentionInDays: 14
+
+Outputs:
+  StockDataFunctionArn:
+    Description: ARN of the stock data Lambda function (use this in your agent configuration)
+    Value: !GetAtt StockDataFunction.Arn
+    Export:
+      Name: StockDataFunctionArn
+      
+  StockDataFunctionName:
+    Description: Name of the stock data Lambda function
+    Value: !Ref StockDataFunction
