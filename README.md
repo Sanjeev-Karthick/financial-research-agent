@@ -7,30 +7,7 @@ A multi-agent collaboration system built on **Amazon Bedrock** that performs com
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    Financial Research Supervisor Agent                   │
-│                                                                          │
-│  Orchestrates research tasks and consolidates insights from sub-agents  │
-└─────────────────────────┬───────────────────────────────────────────────┘
-                          │
-         ┌────────────────┼────────────────┐
-         ▼                ▼                ▼
-┌─────────────────┐ ┌──────────────────┐ ┌─────────────────────┐
-│   News Agent    │ │  Quantitative    │ │  Smart Summarizer   │
-│                 │ │  Analysis Agent  │ │      Agent          │
-│ • Knowledge Base│ │                  │ │                     │
-│ • Web Search    │ │ • Stock Lookup   │ │ • Trend Analysis    │
-│ • SEC Filings   │ │ • Portfolio Opt. │ │ • Report Generation │
-└────────┬────────┘ └────────┬─────────┘ └─────────────────────┘
-         │                   │
-         ▼                   ▼
-┌─────────────────┐ ┌──────────────────┐
-│  Web Search     │ │   Stock Data     │
-│  Lambda Tool    │ │   Lambda Tool    │
-│  (Tavily API)   │ │  (Yahoo Finance) │
-└─────────────────┘ └──────────────────┘
-```
+![AWS Architecture](architecture.png)
 
 ## Features
 
