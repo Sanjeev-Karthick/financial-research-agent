@@ -23,7 +23,7 @@ A multi-agent system that performs comprehensive financial research and investme
 ### 1. Clone and Setup Environment
 
 ```bash
-git clone https://github.com/yourusername/financial-research-agent.git
+git clone https://github.com/Sanjeev-Karthick/financial-research-agent.git
 
 cd financial-research-agent
 
