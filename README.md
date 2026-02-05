@@ -172,11 +172,5 @@ financial-research-agent/
             └── main.ipynb         # Main demonstration notebook
 ```
 
-## Contributing
 
-Contributions are welcome! Please read our contributing guidelines and submit pull requests to the main branch.
-
-## License
-
-This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
 
