@@ -1,6 +1,6 @@
-# Financial Research Assistant Agent
+# Multi Agent Equity Research Assistant
 
-A multi-agent collaboration system built on **Amazon Bedrock** that performs comprehensive financial research and investment analysis. The system uses a supervisor agent pattern to orchestrate specialized sub-agents for news research, quantitative analysis, and intelligent summarization.
+A multi-agent system that performs comprehensive financial research and investment analysis. The system uses a supervisor agent pattern to orchestrate specialized sub-agents for news research, quantitative analysis, and intelligent summarization.
 
 > [!NOTE]
 > **Results from these agents should not be taken as financial advice.**
