@@ -180,6 +180,3 @@ Contributions are welcome! Please read our contributing guidelines and submit pu
 
 This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-This project is inspired by the [Amazon Bedrock Agent Samples](https://github.com/awslabs/amazon-bedrock-agent-samples) from AWS Labs.
